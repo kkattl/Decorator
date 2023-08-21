@@ -1,6 +1,6 @@
 ﻿namespace lab4
 {
-    abstract class TextTransformerDecorator : ITextTransformation
+    public abstract class TextTransformerDecorator : ITextTransformation
     {
         protected ITextTransformation textTransformation;
 

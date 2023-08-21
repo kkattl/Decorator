@@ -1,28 +1,28 @@
 ﻿namespace lab4
 {
-    internal class DecryptorDecorator : TextTransformerDecorator
+    public class DecryptorDecorator : TextTransformerDecorator
     {
         public DecryptorDecorator(ITextTransformation textTransformer) : base(textTransformer)
         {
         }
 
-        public override string Transform(string text)
+        public override string Transform(string filePath)
         {
-            string decryptedText = Decrypt(text);
+            string encryptedText = base.Transform(filePath); 
+            string decryptedText = Decrypt(encryptedText); 
             return decryptedText;
         }
-
-        private static string Decrypt(string text)
+        public string Decrypt(string encryptedText, int shift = 3)
         {
-            int shift = 3;
             string decryptedText = "";
 
-            foreach (char c in text)
+            foreach (char c in encryptedText)
             {
                 if (char.IsLetter(c))
                 {
-                    char decryptedChar = (char)(((char.ToUpper(c) - 'A' - shift + 26) % 26) + 'A');
-                    decryptedText += decryptedChar;
+                    char baseChar = char.IsUpper(c) ? 'A' : 'a';
+                    int shiftedValue = (c - baseChar - shift + 26) % 26;
+                    decryptedText += (char)(shiftedValue + baseChar);
                 }
                 else
                 {
@@ -32,5 +32,6 @@
 
             return decryptedText;
         }
+        
     }
 }

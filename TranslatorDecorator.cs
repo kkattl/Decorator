@@ -3,7 +3,7 @@ using System;
 
 namespace lab4
 {
-    internal class TranslatorDecorator : TextTransformerDecorator
+    public class TranslatorDecorator : TextTransformerDecorator
     {
         public TranslatorDecorator(ITextTransformation text) : base(text)
         {
@@ -17,8 +17,8 @@ namespace lab4
 
         public String Translate(String word)
         {
-            var toLanguage = "en";//English
-            var fromLanguage = "fr";//French
+            var toLanguage = "en";
+            var fromLanguage = "fr";
             var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLanguage}&tl={toLanguage}&dt=t&q={WebUtility.UrlEncode(word)}";
             using (var webClient = new WebClient())
             {

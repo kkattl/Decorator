@@ -1,5 +1,4 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using Newtonsoft.Json;
 
 namespace lab4
@@ -15,7 +14,6 @@ namespace lab4
         public string Transform(string text)
         {
 
-           
             string jsonData = JsonConvert.SerializeObject(text);
 
             File.WriteAllText(FilePath, jsonData);
